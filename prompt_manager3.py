@@ -98,7 +98,7 @@ def show_by_category():
 
     if not found:
         print("해당 카테고리의 프롬프트가 없습니다.")
-        
+
 def toggle_favorite():  
     print() 
     print("[즐겨찾기 등록/해제]")        
@@ -135,9 +135,15 @@ def show_favorites():
     print()
     print("[즐겨찾기 목록]")
 
+    found = False
+
     for prompt in prompts:
         if prompt["favorite"]:
             print(prompt["title"], "-", prompt["category"])
+            found = True
+
+    if not found:
+        print("즐겨찾기에 등록된 프롬프트가 없습니다.")
 
 def show_detail():
     print()
