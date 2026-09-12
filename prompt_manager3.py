@@ -82,21 +82,25 @@ def search_prompt():
     print()
     print("[프롬프트 검색]")
 
-    keyword = input("검색어를 입력하세요 : ").lower()
+    keyword = input("검색어를 입력하세요 : ").strip().lower()
 
     if not keyword:
         print("검색어를 입력하세요.")
         return
 
     found = False
+    result_number = 1
 
     for prompt in prompts:
         if (keyword in prompt["title"].lower()
                 or keyword in prompt["content"].lower()
                 or keyword in prompt["category"].lower()):
-            print(prompt["title"], "-", prompt["category"])
+
+            star = " ⭐" if prompt["favorite"] else ""
+            print(f"{result_number}. {prompt['title']} - {prompt['category']}{star}")
+
             found = True
-            
+            result_number += 1
     if not found:
         print("검색 결과가 없습니다.")
 
