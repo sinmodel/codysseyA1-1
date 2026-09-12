@@ -72,6 +72,10 @@ def search_prompt():
 
     keyword = input("검색어를 입력하세요 : ").lower()
 
+    if not keyword:
+        print("검색어를 입력하세요.")
+        return
+
     found = False
 
     for prompt in prompts:
@@ -79,7 +83,8 @@ def search_prompt():
                 or keyword in prompt["content"].lower()
                 or keyword in prompt["category"].lower()):
             print(prompt["title"], "-", prompt["category"])
-
+            found = True
+            
     if not found:
         print("검색 결과가 없습니다.")
 
