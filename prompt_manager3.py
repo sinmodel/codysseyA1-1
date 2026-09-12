@@ -92,8 +92,12 @@ def show_by_category():
     print()
     print("[카테고리별 조회]")
 
-    category = input("카테고리를 입력하세요 : ")
+    category = input("카테고리를 입력하세요 : ").strip()
 
+    if not category:
+        print("카테고리를 입력하세요.")
+        return
+    
     found = False
 
     for prompt in prompts:
@@ -109,7 +113,7 @@ def toggle_favorite():
     print("[즐겨찾기 등록/해제]")        
         
     if not prompts:
-        print("등록된 프롬프트가 없습니다.")
+        print("즐겨찾기에 등록된 프롬프트가 없습니다.")
         return
     
     for i, prompt in enumerate(prompts, start=1):
@@ -134,7 +138,7 @@ def toggle_favorite():
     if prompt["favorite"]:
         print("즐겨찾기에 등록되었습니다. ⭐")
     else:
-        print("즐겨찾기에서 해제되었습니다.")
+        print("즐겨찾기가 해제되었습니다.")
 
 def show_favorites():
     print()
