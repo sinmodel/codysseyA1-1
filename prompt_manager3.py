@@ -181,8 +181,9 @@ def show_detail():
             print("제목 :", prompt["title"])
             print("카테고리 :", prompt["category"])
             print("내용 :", prompt["content"])
-            print("즐겨찾기 :", prompt["favorite"])
+            print("즐겨찾기 :","⭐ 등록됨" if prompt["favorite"] else "미등록")
             break
+        
     else:
         print("해당 프롬프트를 찾을 수 없습니다.")
 
