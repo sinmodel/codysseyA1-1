@@ -188,6 +188,7 @@ def show_detail():
             print("카테고리 :", prompt["category"])
             print("내용 :", prompt["content"])
             print("즐겨찾기 :","⭐ 등록됨" if prompt["favorite"] else "미등록")
+            print("상세보기가 완료되었습니다.")
             break
         
     else:
