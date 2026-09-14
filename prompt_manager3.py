@@ -1,3 +1,9 @@
+import json
+
+def save_prompts():
+    with open("prompts.json", "w", encoding="utf-8") as file:
+        json.dump(prompts, file, ensure_ascii=False, indent=4)
+
 prompts = [
     {
         "title": "Python 학습",
@@ -193,7 +199,8 @@ def main():
         elif choice == "7": 
             show_detail() 
 
-        elif choice == "0": 
+        elif choice == "0":
+            save_prompts()
             print("프로그램을 종료합니다.") 
             break 
 
