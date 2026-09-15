@@ -4,6 +4,23 @@ def save_prompts():
     with open("prompts.json", "w", encoding="utf-8") as file:
         json.dump(prompts, file, ensure_ascii=False, indent=4)
 
+def export_to_markdown():
+    print()
+    print("[Markdown 내보내기]")
+
+    exported_categories = set()
+
+    for prompt in prompts:
+        filename = prompt["category"] + ".md"
+        mode = "w" if prompt["category"] not in exported_categories else "a"
+
+        with open(filename, mode, encoding="utf-8") as file:
+            file.write(f"# {prompt['title']}\n\n")
+            file.write(f"{prompt['content']}\n\n")
+        exported_categories.add(prompt["category"])
+
+    print("Markdown 내보내기가 완료되었습니다.")
+
 def load_prompts():
     try:
         with open("prompts.json", "r", encoding="utf-8") as file:
@@ -46,6 +63,7 @@ def show_menu():
     print("5. 즐겨찾기 등록/해제")
     print("6. 즐겨찾기 목록")
     print("7. 상세 보기")
+    print("8. Markdown 내보내기")
     print("0. 종료")
 
 def add_prompt():
@@ -226,6 +244,9 @@ def main():
 
         elif choice == "7": 
             show_detail() 
+
+        elif choice == "8":
+            export_to_markdown()
 
         elif choice == "0":
             save_prompts()
