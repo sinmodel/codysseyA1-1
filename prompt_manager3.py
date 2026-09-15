@@ -4,6 +4,13 @@ def save_prompts():
     with open("prompts.json", "w", encoding="utf-8") as file:
         json.dump(prompts, file, ensure_ascii=False, indent=4)
 
+def load_prompts():
+    try:
+        with open("prompts.json", "r", encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
+
 prompts = [
     {
         "title": "Python 학습",
@@ -192,6 +199,8 @@ def show_detail():
         print("해당 프롬프트를 찾을 수 없습니다.")
 
 def main(): 
+    prompts[:] = load_prompts() or prompts
+
     while True: 
         show_menu() 
 
