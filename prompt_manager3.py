@@ -45,9 +45,28 @@ def add_prompt():
     print()
     print("[프롬프트 등록]")
 
-    title = input("제목을 입력하세요 : ")
-    category = input("카테고리를 입력하세요 : ")
-    content = input("내용을 입력하세요 : ")
+    title = input("제목을 입력하세요 : ").strip()
+
+    if not title:
+        print("제목을 입력하세요.")
+        return
+
+    for prompt in prompts:
+        if prompt["title"].lower() == title.lower():
+            print("이미 등록된 제목입니다.")
+            return
+
+    category = input("카테고리를 입력하세요 : ").strip()
+
+    if not category:
+        print("카테고리를 입력하세요.")
+        return
+
+    content = input("내용을 입력하세요 : ").strip()
+
+    if not content:
+        print("내용을 입력하세요.")
+        return
 
     new_prompt = {
         "title": title,
