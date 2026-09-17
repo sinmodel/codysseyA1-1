@@ -33,7 +33,8 @@ prompts = [
         "title": "Python 학습",
         "category": "개발",
         "content": "Python을 쉽게 설명해 주세요.",
-        "favorite": False
+        "favorite": False,
+        "usage_count": 0
     },
     {
         "title": "AI 사용법을 익히기 위한 회의록 요약 작성",
@@ -88,7 +89,8 @@ prompts = [
 
 [회의록 원문]
 여기에 회의록을 붙여 넣으세요.""",        
-        "favorite": False
+        "favorite": False,
+        "usage_count": 0
     },
     {
         "title": "AI를 활용한 4컷 멀티모달 콘텐츠 제작",
@@ -144,7 +146,8 @@ prompts = [
 핵심 메시지:
 사용할 AI 도구:
 영상 길이:""",
-        "favorite": False
+        "favorite": False,
+        "usage_count": 0
     },
     {
         "title": "반복 업무를 위한 노코드 자동화 워크플로우 설계",
@@ -202,13 +205,15 @@ prompts = [
 AI 활용 여부:
 결과 저장 방법:
 최종 처리 방법:""",
-        "favorite": False
+        "favorite": False,
+        "usage_count": 0
     },
     {
         "title": "영상 제작",
         "category": "영상",
         "content": "영상 제작을 위한 장면 구성과 프롬프트를 만들어 주세요.",
-        "favorite": False
+        "favorite": False,
+        "usage_count": 0
     }
 ]
 
@@ -220,15 +225,16 @@ def show_menu():
     print()
 
     print("1. 프롬프트 등록")
-    print("2. 프롬프트 목록 보기")
+    print("2. 프롬프트 목록")
     print("3. 프롬프트 검색")
-    print("4. 카테고리별 조회")
+    print("4. 카테고리 조회")
     print("5. 즐겨찾기 등록/해제")
     print("6. 즐겨찾기 목록")
-    print("7. 상세 보기")
+    print("7. 상세보기")
     print("8. Markdown 내보내기")
     print("9. 프롬프트 수정")
     print("10. 프롬프트 삭제")
+    print("11. 사용횟수 Top 목록")
     print("0. 종료")
 
 def add_prompt():
@@ -262,7 +268,8 @@ def add_prompt():
         "title": title,
         "category": category,
         "content": content,
-        "favorite": False
+        "favorite": False,
+         "usage_count": 0
     }
 
     prompts.append(new_prompt)
@@ -271,7 +278,7 @@ def add_prompt():
 
 def show_list():
     print()
-    print("[프롬프트 목록 보기]")
+    print("[프롬프트 목록]")
 
     if not prompts:
         print("등록된 프롬프트가 없습니다.")
@@ -305,7 +312,7 @@ def search_prompt():
 
 def show_by_category():
     print()
-    print("[카테고리별 조회]")
+    print("[카테고리 조회]")
 
     category = input("카테고리를 입력하세요 : ")
 
@@ -373,13 +380,34 @@ def show_detail():
 
     for prompt in prompts:
         if prompt["title"].lower() == title:
+            prompt.setdefault("usage_count", 0)
+            prompt["usage_count"] += 1
+
             print("제목 :", prompt["title"])
             print("카테고리 :", prompt["category"])
             print("내용 :", prompt["content"])
             print("즐겨찾기 :", prompt["favorite"])
+            print("사용 횟수 :", prompt["usage_count"])
             break
     else:
         print("해당 프롬프트를 찾을 수 없습니다.")
+
+def show_usage_top():
+    print()
+    print("[사용횟수 Top 목록]")
+
+    sorted_prompts = sorted(
+        prompts,
+        key=lambda prompt: prompt.get("usage_count", 0),
+        reverse=True
+    )
+
+    for index, prompt in enumerate(sorted_prompts, 1):
+        print(
+            f"{index}. {prompt['title']} - "
+            f"{prompt['category']} - "
+            f"사용 횟수: {prompt.get('usage_count', 0)}"
+        )
 
 def update_prompt():
     print()
@@ -482,6 +510,9 @@ def main():
 
         elif choice == "10":
             delete_prompt()
+
+        elif choice == "11":
+            show_usage_top()
 
         elif choice == "0":
             save_prompts()
