@@ -227,6 +227,8 @@ def show_menu():
     print("6. 즐겨찾기 목록")
     print("7. 상세 보기")
     print("8. Markdown 내보내기")
+    print("9. 프롬프트 수정")
+    print("10. 프롬프트 삭제")
     print("0. 종료")
 
 def add_prompt():
@@ -379,6 +381,70 @@ def show_detail():
     else:
         print("해당 프롬프트를 찾을 수 없습니다.")
 
+def update_prompt():
+    print()
+    print("[프롬프트 수정]")
+
+    title = input("수정할 제목을 입력하세요 : ").strip().lower()
+
+    if not title:
+        print("수정할 제목을 입력하세요.")
+        return
+
+    for prompt in prompts:
+        if prompt["title"].lower() == title:
+            new_title = input(
+                f"새 제목 [{prompt['title']}] : "
+            ).strip()
+
+            new_category = input(
+                f"새 카테고리 [{prompt['category']}] : "
+            ).strip()
+
+            new_content = input(
+                f"새 내용 [{prompt['content']}] : "
+            ).strip()
+
+            if new_title:
+                for other_prompt in prompts:
+                    if (
+                        other_prompt is not prompt
+                        and other_prompt["title"].lower() == new_title.lower()
+                    ):
+                        print("이미 등록된 제목입니다.")
+                        return
+
+                prompt["title"] = new_title
+
+            if new_category:
+                prompt["category"] = new_category
+
+            if new_content:
+                prompt["content"] = new_content
+
+            print("프롬프트가 수정되었습니다.")
+            return
+
+    print("해당 프롬프트를 찾을 수 없습니다.")
+
+def delete_prompt():
+    print()
+    print("[프롬프트 삭제]")
+
+    title = input("삭제할 제목을 입력하세요 : ").strip().lower()
+
+    if not title:
+        print("삭제할 제목을 입력하세요.")
+        return
+
+    for prompt in prompts:
+        if prompt["title"].lower() == title:
+            prompts.remove(prompt)
+            print("프롬프트가 삭제되었습니다.")
+            return
+
+    print("해당 프롬프트를 찾을 수 없습니다.")
+
 def main(): 
     prompts[:] = load_prompts() or prompts
 
@@ -410,6 +476,12 @@ def main():
 
         elif choice == "8":
             export_to_markdown()
+
+        elif choice == "9":
+            update_prompt()
+
+        elif choice == "10":
+            delete_prompt()
 
         elif choice == "0":
             save_prompts()
