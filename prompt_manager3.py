@@ -405,23 +405,36 @@ def show_detail():
     print()
     print("[상세보기]")
 
-    title = input("제목을 입력하세요 : ").lower()
+    if not prompts:
+        print("등록된 프롬프트가 없습니다.")
+        return
 
-    for prompt in prompts:
-        if prompt["title"].lower() == title:
-            prompt.setdefault("usage_count", 0)
-            prompt["usage_count"] += 1
+    for i, prompt in enumerate(prompts, start=1):
+        print(f"{i}. {prompt['title']} - {prompt['category']}")
 
-            print("제목 :", prompt["title"])
-            print("카테고리 :", prompt["category"])
-            print("내용 :", prompt["content"])
-            print("즐겨찾기 :","⭐ 등록됨" if prompt["favorite"] else "미등록")
-            print("사용 횟수 :", prompt["usage_count"])
-            print("상세보기가 완료되었습니다.")
-            break
-        
-    else:
-        print("해당 프롬프트를 찾을 수 없습니다.")
+    number = input("상세보기 할 프롬프트 번호를 입력하세요 : ").strip()
+
+    if not number.isdigit():
+        print("번호를 입력하세요.")
+        return
+
+    index = int(number) - 1
+
+    if index < 0 or index >= len(prompts):
+        print("잘못된 번호입니다.")
+        return
+
+    prompt = prompts[index]
+
+    prompt.setdefault("usage_count", 0)
+    prompt["usage_count"] += 1
+
+    print("제목 :", prompt["title"])
+    print("카테고리 :", prompt["category"])
+    print("내용 :", prompt["content"])
+    print("즐겨찾기 :", "⭐ 등록됨" if prompt["favorite"] else "미등록")
+    print("사용 횟수 :", prompt["usage_count"])
+    print("상세보기가 완료되었습니다.")
 
 def show_usage_top():
     print()
