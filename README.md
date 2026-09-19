@@ -132,7 +132,7 @@ prompts.json
 
 ---
 
-## 6. Markdown 내보내기
+## 6. Markdown 송출
 
 등록된 프롬프트는 카테고리별 Markdown 파일로 내보낼 수 있습니다.
 
@@ -236,10 +236,10 @@ prompts.json
 - 즐겨찾기 기능 개선
 - 상세 보기 기능 개선
 - JSON 저장 및 불러오기 기능 추가
-- Markdown 내보내기 기능 추가
+- Markdown 송출 기능 추가
 - 학습 과정에서 작성한 재사용 프롬프트 추가
 - 프롬프트 수정 및 삭제 기능 추가
-- 사용 횟수 기록 및 Top 목록 기능 추가
+- 사용 횟수 기록 및 목록 기능 추가
 - 기능 개선을 위한 Feature Branch 생성 및 Main Branch 병합
 - GitHub 저장소에 최종 코드 업로드
 
