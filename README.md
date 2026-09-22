@@ -11,8 +11,11 @@ https://github.com/sinmodel/codysseyA1-1
 
 Python 버전, Visual Studio Code 버전, Git 사용자 설정을 확인할 수 있습니다.
 
-![개발 환경 설정](개발 환경 설정_스크린샷.png)
+![개발 환경 설정](.%20/개발 환경 설정_스크린샷.png)
 개발 환경 설정_스크린샷.png
+![Email 2.일반메일](./Email%202.일반메일.png)
+
+
 ### 3. 프롬프트 관리 메뉴 스크린샷
 
 프로그램의 전체 메뉴 구성을 확인할 수 있습니다.
