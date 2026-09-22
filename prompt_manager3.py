@@ -6,7 +6,7 @@ def save_prompts():
 
 def export_to_markdown():
     print()
-    print("[Markdown 내보내기]")
+    print("[Markdown 송출]")
 
     exported_categories = set()
 
@@ -19,7 +19,7 @@ def export_to_markdown():
             file.write(f"{prompt['content']}\n\n")
         exported_categories.add(prompt["category"])
 
-    print("Markdown 내보내기가 완료되었습니다.")
+    print("Markdown 송출이 완료되었습니다.")
 
 def load_prompts():
     try:
@@ -230,12 +230,12 @@ def show_menu():
     print("4. 카테고리 조회")
     print("5. 즐겨찾기 등록/해제")
     print("6. 즐겨찾기 목록")
-    print("7. 상세보기")
-    print("8. Markdown 내보내기")
+    print("7. 상세하게 보기")
+    print("8. Markdown 송출")
     print("9. 프롬프트 수정")
-    print("10. 프롬프트 삭제")
-    print("11. 사용횟수 Top 목록")
-    print("0. 종료")
+    print("10.프롬프트 삭제")
+    print("11.사용횟수 목록")
+    print("0. 프로그램 종료")
 
 def add_prompt():
     print()
@@ -438,7 +438,7 @@ def show_detail():
 
 def show_usage_top():
     print()
-    print("[사용횟수 Top 목록]")
+    print("[사용횟수 목록]")
 
     sorted_prompts = sorted(
         prompts,
